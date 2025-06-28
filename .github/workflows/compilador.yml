@@ -1,0 +1,35 @@
+name: Compilar sin Maven
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Descargar Nukkit
+        run: curl -L -o nukkit.jar https://ci.opencollab.dev/job/NukkitX/job/Nukkit/job/master/lastSuccessfulBuild/artifact/target/nukkit-1.0-SNAPSHOT.jar
+
+      - name: Crear carpeta de salida
+        run: mkdir -p out
+
+      - name: Compilar plugin
+        run: |
+          javac -cp nukkit.jar -d out $(find src -name "*.java")
+          cp src/plugin.yml out/
+
+      - name: Crear archivo JAR
+        run: |
+          cd out
+          jar cf ItemFrameDuplicador.jar *
+
+      - name: Subir artefacto compilado
+        uses: actions/upload-artifact@v4
+        with:
+          name: PluginCompilado
+          path: out/ItemFrameDuplicador.jar
