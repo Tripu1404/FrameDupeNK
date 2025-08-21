@@ -1,4 +1,4 @@
-package com.ejemplo.itemframeduplicador;
+package com.tripu1404.itemframeduplicador;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
