@@ -1,5 +1,5 @@
 name: FrameDupe
-main: com.ejemplo.itemframeduplicador.ItemFrameDuplicador
+main: com.tripu1404.itemframeduplicador.ItemFrameDuplicador
 version: 1.0
 api: ["1.0.0"]
 author: Tripu1404
